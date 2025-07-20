@@ -105,34 +105,38 @@ def delete_all():
         print("Error deleting all cats:", e)
 
 # Головна функція для взаємодії з користувачем
-while True:
-    user_input = input("Enter command (create, read_all, read_one, update_age, add_feature, delete_cat, delete_all, exit): ").strip().lower()
+def main():
+    while True:
+        user_input = input("Enter command (create, read_all, read_one, update_age, add_feature, delete_cat, delete_all, exit): ").strip().lower()
+        if user_input == "create":
+            name = input("Enter cat name: ")
+            age = int(input("Enter cat age: "))
+            features = [f.strip() for f in input("Enter features: ").split(",")]
+            create_cat(name, age, features)
+        elif user_input == "read_all":
+            read_all()
+        elif user_input == "read_one":
+            name = input("Enter cat name: ")
+            read_one(name)
+        elif user_input == "update_age":
+            name = input("Enter cat name: ")
+            age = int(input("Enter new age: "))
+            update_age(name, age)
+        elif user_input == "add_feature":
+            name = input("Enter cat name: ")
+            feature = [f.strip() for f in input("Enter feature(s) to add (comma-separated): ").split(",")]
+            add_feature(name, feature)
+        elif user_input == "delete_cat":
+            name = input("Enter cat name: ")
+            delete_cat(name)
+        elif user_input == "delete_all":
+           delete_all()
+        elif user_input == "exit":
+            print("Bye!")
+            break
+        else:
+            print("Invalid command")
 
-    if user_input == "create":
-        name = input("Enter cat name: ")
-        age = int(input("Enter cat age: "))
-        features = [f.strip() for f in input("Enter features: ").split(",")]
-        create_cat(name, age, features)
-    elif user_input == "read_all":
-        read_all()
-    elif user_input == "read_one":
-        name = input("Enter cat name: ")
-        read_one(name)
-    elif user_input == "update_age":
-        name = input("Enter cat name: ")
-        age = int(input("Enter new age: "))
-        update_age(name, age)
-    elif user_input == "add_feature":
-        name = input("Enter cat name: ")
-        feature = [f.strip() for f in input("Enter feature(s) to add (comma-separated): ").split(",")]
-        add_feature(name, feature)
-    elif user_input == "delete_cat":
-        name = input("Enter cat name: ")
-        delete_cat(name)
-    elif user_input == "delete_all":
-       delete_all()
-    elif user_input == "exit":
-        print("Bye!")
-        break
-    else:
-       print("Invalid command")
+
+if __name__ == "__main__":
+    main()
